@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>add</title>
+{% endblock %}
+
+{% block body %}
+<div class="p-3 d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="container bg-white d-flex flex-column justify-content-center align-items-center p-5">
+        <h1>Товар додано до корзини</h1>
+        <div class="" style="max-width: 600px;">
+            <img src="/static/add.gif" alt="" class="img-fluid">
+        </div>
+        <div class="d-flex">
+            <li class="" style="list-style-type: none;">
+                <a class="nav-link d-flex align-items-center p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                    <lord-icon
+                        src="https://cdn.lordicon.com/jnikqyih.json"
+                        trigger="hover"
+                        style="width:20px;height:20px; margin-right: 5px;">
+                    </lord-icon>
+                    Товари
+                </a>
+                <ul class="dropdown-menu" style="background-color: white;">
+                    <a href="/dronList" class="btn  d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-d1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Дрони</a>
+                    <a href="/pultList" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-p1.png" alt="" class="img-fluid"style="max-height: 30px;">
+                        </div>
+                        Пульти</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-i1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Окуляри</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/akkumuljator.jpg" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Аккумулятори</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="p-1" style="width: 50px;">
+                            <img src="/static/quadro-combo.jpeg" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Запчастини</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/case.webp" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Кейси</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/full-stack.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Готові комплекти</a>
+                </ul>
+            </li>
+            <a href="/show_cart" class=" btn btn-dark ms-5">Корзина</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -230,7 +230,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <a type="button" href="/logout" class="btn btn-outline-danger">вийти з акаунту</a>
+                {% if session["is_authenticated"] %}
+                    <a type="button" href="/logout" class="btn btn-outline-danger">вийти з акаунту</a>
+                {% else %}
+                    <a type="button" href="/login" class="btn btn-outline-primary">увійти в акаунт</a>
+                {% endif %}
             </div>
         </div>
         </div>

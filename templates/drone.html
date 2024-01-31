@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
 <div class="p-3" style="margin-top: 50px;">
-    <a href="/back" class="btn mb-2 text-center">До каталогу</a>
+    <a href="{{ url_for('pultList' if item_type == 'пульт' else 'dronList') }}" class="btn mb-2 text-center">До каталогу</a>
 <div class="">
     <div  class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 justify-content-center">
         <div class="col row-cols-1 d-flex align-items-start">

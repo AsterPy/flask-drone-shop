@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from db import Database
 from base64 import b64encode
 import re
@@ -108,6 +108,9 @@ def remove_from_cart(item_id):
 
 @app.route("/add_to_cart", methods=["POST"])
 def add_to_cart():
+    params = {"is_authenticated": session.get("is_authenticated")}
+    if not params["is_authenticated"]:
+        return redirect(url_for("register"))
     item_id = request.form.get("itemId")
     # Перевірка авторизації
     if not session.get("is_authenticated"):
@@ -122,13 +125,13 @@ def add_to_cart():
 
     if items:
         # Товар уже є в кошику
-        return redirect(url_for("drone", id=item_id))
+        return render_template('no_add_to_cart.html', id=item_id)
 
     # Додавання товару в кошик
     db.cursor.execute("INSERT INTO carts (user_id, item_id, items_count) VALUES (?, ?, 1)", (user_id, item_id))
     db.conn.commit()
 
-    return redirect(url_for("drone", id=item_id))
+    return render_template('add_to_cart.html', id=item_id)
 
 
 @app.route("/register", methods=["POST", "GET"])
@@ -257,11 +260,8 @@ def contact():
 
 @app.route("/dronList", methods=["GET"])
 def dronList():
-    params = {"is_authenticated": session.get("is_authenticated")}
     category = request.args.get("category")
     sort_by = request.args.get("sort_by")
-    if not params["is_authenticated"]:
-        return redirect(url_for("register"))
     name = session.get("name")
     surname = session.get("surname")
     email = session.get("email")
@@ -300,10 +300,7 @@ def dronList():
 
 @app.route("/pultList", methods=["GET"])
 def pultList():
-    params = {"is_authenticated": session.get("is_authenticated")}
     category = request.args.get("category")
-    if not params["is_authenticated"]:
-        return redirect(url_for("register"))
     name = session.get("name")
     surname = session.get("surname")
     email = session.get("email")
@@ -335,16 +332,14 @@ def pultList():
 
 @app.route("/drone/<int:id>")
 def drone(id):
-    params = {"is_authenticated": session.get("is_authenticated")}
     session["previous_url"] = request.headers.get("Referer")
-    if not params["is_authenticated"]:
-        return redirect(url_for("register"))
     name = session.get("name")
     db = Database("shop.db")
     item = db.get_item_by_id(id)
 
     if item:
         image = b64encode(item[1]).decode('utf-8')
+        item_type = item[7]
         item_data = {
             'id': item[0],
             'title': item[2],
@@ -353,17 +348,9 @@ def drone(id):
             'isActive': item[5],
             'image': image,
         }
-        return render_template('drone.html', item=item_data, name=name)
+        return render_template('drone.html', item=item_data, name=name, item_type=item_type)
     else:
         return render_template('drone.html', error='Дрон не знайдено', name=name)
-
-@app.route("/back")
-def back():
-    previous_url = session.get("previous_url")
-    if previous_url:
-        return redirect(previous_url)
-
-    return redirect(url_for("home"))
 
 @app.route("/admin", methods=['POST', 'GET'])
 def admin():
