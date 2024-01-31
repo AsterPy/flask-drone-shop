@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Admin</title>
+{% endblock %}
+
+
+{% block body %}
+<div style="height: 100px;"></div>
+<div class="container">
+    <h1>Замовлення</h1>
+    <div class="container row">
+        {% for item in cart_items %}
+                                <div class="col">
+                                    <div class="btn p-2 d-flex flex-column justify-content-between align-items-center m-2" style=" min-width: 200px; background-color: rgb(255, 255, 255); border: 1px rgb(226, 226, 226) solid;">
+                                        <div style="width: 100%;" class="d-flex justify-content-end">
+                                            <a href="/admin/delete/{{ item.item_id }}" class="btn btn-light">
+                                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                                <lord-icon
+                                                    src="https://cdn.lordicon.com/skkahier.json"
+                                                    trigger="hover"
+                                                    style="width:20px;height:20px">
+                                                </lord-icon>
+                                            </a>
+                                        </div>
+                                        <img class="img-fluid" style="max-height: 100px;" src="data:image/jpeg;base64,{{ item.image }}" alt="{{ item.title }}">
+                                        <p class="p-2 m-0 d-flex flex-column">
+                                            <p class="m-0">Id товару: {{ item.item_id }}</p>
+                                            <p class="m-0">Id покупця:  {{ item.user_id }}</p>
+                                            <p class="m-0">Статус покупки:  {{ item.status }}</p>
+                                        </p>
+                                    </div>
+                                </div>
+                        {% endfor %}
+    </div>
+</div>
+<div class="container">
+    <h1>Покупці</h1><br>
+    <div class="container" style="border: 1px solid rgb(212, 212, 212); border-radius: 5px; overflow-x: scroll">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Ім'я</th>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Пошта</th>
+                    <th scope="col">Коментар</th>
+                    <th scope="col">Сума</th>
+                    <th scope="col">id Покупця</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for buyer in buyers %}
+                    <tr>
+                        <th scope="row">{{ buyer['id'] }}</th>
+                        <td>{{ buyer['name'] }}</td>
+                        <td>{{ buyer['phone'] }}</td>
+                        <td>{{ buyer['email'] }}</td>
+                        <td>{{ buyer['comment'] }}</td>
+                        <td>{{ buyer['total_price'] }}</td>
+                        <td>{{ buyer['user_id'] }}</td>
+                        <td>
+                            <a href="/admin/delete/q/{{ buyer['user_id'] }}" class="btn btn-light">
+                                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/skkahier.json"
+                                    trigger="hover"
+                                    style="width:20px;height:20px">
+                                </lord-icon>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    
+        </table>
+    </div>
+</div>
+<div class="container">
+    <h1>Товари</h1><br>
+    <div class="container" style="border: 1px solid rgb(212, 212, 212); border-radius: 5px; overflow-x: scroll">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Фото</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Опис</th>
+                    <th scope="col">Ціна</th>
+                    <th scope="col">Кількість</th>
+                    <th scope="col">Категорія</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <th scope="row">{{ item['id'] }}</th>
+                        <td><img class="object-fit-cover" style="max-width: 100px; height: 50px;" src="data:image/png;base64,{{ item['image'] }}" alt="{{ item['title'] }}"></td>
+                        <td style="max-width: 200px; font-size: 12px;">{{ item['title'] }}</td>
+                        <td>
+                            <p>
+                                <a class="" data-bs-toggle="collapse" data-bs-target="#collapse{{ item['id'] }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Ознайомитись детальніше...
+                                </a>                            
+                            </p>
+                            <div class="collapse" id="collapse{{ item['id'] }}">
+                                <div class="card card-body">
+                                    {{ item['about'] }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item['price'] }}</td>
+                        <td>{{ item['isActive'] }}</td>
+                        <td>{{ item['category'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    
+        </table>
+    </div>
+</div>
+<div style="height: 100px;"></div>
+<div class="container">
+    <h1>Додати товар</h1><br>
+    <div class="container"  >
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <input style="height: 200px; min-width: 300px;" type="file" name="img" class="form-control col m-3" id="img" placeholder="Додайте зображення товару" accept="image/jpeg,image/png,image/gif"><br>
+                <div class="col m-3">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Введіть назву товару"><br>
+                    <textarea  type="text" name="about" class="form-control" id="about" placeholder="Опишіть товар" style="white-space: pre-wrap;"></textarea><br>
+                    <div class="row ps-3 pe-3">
+                        <input type="number" name="price" class="form-control col me-3" id="price" placeholder="Вкажіть ціну"><br>
+                        <input type="number" name="isActive" class="form-control col" id="isActive" placeholder="Вкажіть кількість"><br>
+                    </div><br>
+                    <select class="form-control custom-select col" id="category"  name="category">
+                        <option selected>розважальний</option>
+                        <option>-</option>
+                        <option>фоторонічний</option>
+                        <option>міжпланетний</option>
+                        <option>військовий</option>
+                        <option>курєр</option>
+                        <option>будівельний</option>
+                        <option>сільськогосподарський</option>
+                    </select><br>
+                    <select class="form-control custom-select col" id="type"  name="type">
+                        <option selected>дрон</option>
+                        <option>пульт</option>
+                    </select><br>
+                </div>
+            </div>
+            <button  style="width: 100px; float: right;"  class="btn btn-success me-3" type="submit">Додати</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Drones</title>
+{% endblock %}
+
+{% block shopB %}
+<div class="row d-none d-xl-flex align-items-center justify-content-between ms-3">
+    <li class="col" style="list-style-type: none;">
+        <a class="nav-link d-flex align-items-center p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+            <lord-icon
+                src="https://cdn.lordicon.com/jnikqyih.json"
+                trigger="hover"
+                style="width:20px;height:20px; margin-right: 5px;">
+            </lord-icon>
+            Категорії
+        </a>
+        <ul class="dropdown-menu" style="background-color: white;">
+            <a href="/dronList" class="btn  d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/home-d1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Дрони</a>
+            <a href="/pultList" class="btn d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/home-p1.png" alt="" class="img-fluid"style="max-height: 30px;">
+                </div>
+                Пульти</a>
+            <a href="#" class="btn d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/home-i1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Окуляри</a>
+            <a href="#" class="btn d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/akkumuljator.jpg" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Аккумулятори</a>
+            <a href="#" class="btn d-flex">
+                <div class="p-1" style="width: 50px;">
+                    <img src="/static/quadro-combo.jpeg" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Запчастини</a>
+            <a href="#" class="btn d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/case.webp" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Кейси</a>
+            <a href="#" class="btn d-flex">
+                <div class="" style="width: 50px;">
+                    <img src="/static/full-stack.png" alt="" class="img-fluid" style="max-height: 30px;">
+                </div>
+                Готові комплекти</a>
+        </ul>
+    </li>
+    <li class="nav-item dropdown col" style="list-style-type: none;">
+        <a class="nav-link p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+            Сортування
+        </a>
+        <ul class="dropdown-menu" style="background-color: white;">
+            <li><a style="width: 100%;" class="dropdown-item mb-3" href="/dronList">За ревалентністю</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3" href="{{ url_for('dronList', category=category, sort_by='price_desc') }}">Від дорощого до дешевшого</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3" href="{{ url_for('dronList', category=category, sort_by='price_asc') }}">Від дешевшого до дорощого</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown col" style="list-style-type: none;">
+        <a class="nav-link p-2  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+        Категорія
+    </a>
+    <ul class="dropdown-menu" style="background-color: white;">
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'розважальний' else '' }}"  href="{{ url_for('dronList', category='розважальний') }}">Розважальні дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'фоторонічний' else '' }}"  href="{{ url_for('dronList', category='фоторонічний') }}">Фотороніки дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'міжпланетний' else '' }}"  href="{{ url_for('dronList', category='міжпланетний') }}">Міжпланетні дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'військовий' else '' }}"  href="{{ url_for('dronList', category='військовий') }}">Військові дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'курєр' else '' }}"  href="{{ url_for('dronList', category='курєр') }}">Курєри дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'будівельний' else '' }}"  href="{{ url_for('dronList', category='будівельний') }}">Будівельні дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'сільськогосподарський' else '' }}"  href="{{ url_for('dronList', category='сільськогосподарський') }}">Сільськогосподарські дрони</a></li>
+    <li><a style="width: 100%;" class="dropdown-item mb-3 " href="/dronList">Усі</a></li>
+    </ul>
+    </li>
+</div>
+
+{% endblock %}
+
+{% block search %}
+    <div class="d-none d-xl-flex  col align-items-center justify-content-end bg-white" style="min-width: 300px;">
+        <div class="d-flex p-2" style=" background-color: rgb(255, 255, 255); max-height: 50px;">
+            <form action="/search" method="GET" class="d-flex" style="border: 2px solid rgb(223, 223, 223); border-radius: 5px;">  
+                <input type="text" class="form-control" name="query" placeholder="Що шукаєте?" style="border: none">
+                <button class="btn p-1 pe-3" style="border-radius: 0px 5px 5px 0px;">
+                    <lord-icon
+                    src="https://cdn.lordicon.com/fkdzyfle.json"
+                    trigger="hover"
+                    style="width:20px;height:20px">
+                </lord-icon>
+            </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        
+        background-color: rgb(244, 244, 244);
+    }
+</style>
+<div style="height: 10px;"></div>
+<div class="p-3 bg-white">
+    <div class="d-flex mb-2 d-xl-none align-items-center justify-content-between" style="margin-top: 60px;">
+            <li class="" style="list-style-type: none;">
+                <a class="nav-link d-flex align-items-center p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                    <lord-icon
+                        src="https://cdn.lordicon.com/jnikqyih.json"
+                        trigger="hover"
+                        style="width:20px;height:20px; margin-right: 5px;">
+                    </lord-icon>
+                    Категорії
+                </a>
+                <ul class="dropdown-menu" style="background-color: white;">
+                    <a href="/dronList" class="btn  d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-d1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Дрони</a>
+                    <a href="/pultList" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-p1.png" alt="" class="img-fluid"style="max-height: 30px;">
+                        </div>
+                        Пульти</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/home-i1.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Окуляри</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/akkumuljator.jpg" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Аккумулятори</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="p-1" style="width: 50px;">
+                            <img src="/static/quadro-combo.jpeg" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Запчастини</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/case.webp" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Кейси</a>
+                    <a href="#" class="btn d-flex">
+                        <div class="" style="width: 50px;">
+                            <img src="/static/full-stack.png" alt="" class="img-fluid" style="max-height: 30px;">
+                        </div>
+                        Готові комплекти</a>
+                </ul>
+            </li>
+                <div class="ms-2" style=" background-color: rgb(255, 255, 255); max-height: 50px;">
+                    <form action="/search" method="GET" class="d-flex" style="border: 2px solid rgb(223, 223, 223); border-radius: 5px;">  
+                        <input type="text" class="form-control" name="query" placeholder="Що шукаєте?" style="border: none">
+                        <button class="btn d-flex align-items-center" style="border-radius: 0px 5px 5px 0px;">
+                            <lord-icon
+                            src="https://cdn.lordicon.com/fkdzyfle.json"
+                            trigger="hover"
+                            style="width:20px;height:20px">
+                        </lord-icon>
+                    </button>
+                    </form>
+                </div>
+            </div>
+        <div class="d-flex d-xl-none">
+            <li class="nav-item dropdown col" style="list-style-type: none;">
+                <a class="nav-link p-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+                    Сортування
+                </a>
+                <ul class="dropdown-menu" style="background-color: white;">
+                    <li><a style="width: 100%;" class="dropdown-item mb-3" href="/dronList">За ревалентністю</a></li>
+                    <li><a style="width: 100%;" class="dropdown-item mb-3" href="{{ url_for('dronList', category=category, sort_by='price_desc') }}">Від дорощого до дешевшого</a></li>
+                    <li><a style="width: 100%;" class="dropdown-item mb-3" href="{{ url_for('dronList', category=category, sort_by='price_asc') }}">Від дешевшого до дорощого</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown ms-2 col" style="list-style-type: none;">
+                <a class="nav-link p-2  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(253, 253, 253); border-radius: 5px; border: 1px solid rgb(227, 227, 227);">
+                Категорія
+            </a>
+            <ul class="dropdown-menu" style="background-color: white;">
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'розважальний' else '' }}"  href="{{ url_for('dronList', category='розважальний') }}">Розважальні дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'фоторонічний' else '' }}"  href="{{ url_for('dronList', category='фоторонічний') }}">Фотороніки дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'міжпланетний' else '' }}"  href="{{ url_for('dronList', category='міжпланетний') }}">Міжпланетні дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'військовий' else '' }}"  href="{{ url_for('dronList', category='військовий') }}">Військові дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'курєр' else '' }}"  href="{{ url_for('dronList', category='курєр') }}">Курєри дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'будівельний' else '' }}"  href="{{ url_for('dronList', category='будівельний') }}">Будівельні дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3  {{ 'active' if category == 'сільськогосподарський' else '' }}"  href="{{ url_for('dronList', category='сільськогосподарський') }}">Сільськогосподарські дрони</a></li>
+            <li><a style="width: 100%;" class="dropdown-item mb-3 " href="/dronList">Усі</a></li>
+            </ul>
+            </li>
+        </div>
+</div>
+<div class="mt-2"  style="background-color: rgb(244, 244, 244); min-height: 100vh;">
+    <div class="p-3">
+        <div class="row justify-content-start">
+            {% for item in items %}
+            <a href="/drone/{{ item['id'] }}" class="element-id btn col btn-outline-dark ps-3 pe-3 col-6 col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6" style=" border: None; border-radius: 0px; height: 380px;">
+                <style>
+                    .element-id:hover {
+                        color: inherit !important; 
+                        background-color: transparent !important;
+                    }
+                    .element-id:hover .item{
+                        border: 1px solid rgb(230, 230, 230);
+                    }
+                </style>
+                <div class="item d-flex row  bg-white" style="height: 100%;">
+                    <img class="object-fit-cover p-1" style="height: 200px;" src="data:image/png;base64,{{ item['image'] }}" alt="{{ item['title'] }}">
+                    <div class=" justify-content-start pb-2">
+                        <div style="height: 1px; width: 100%; background-color: rgb(219, 219, 219); margin-top: 10px; margin-bottom: 10px ;"></div>
+                        <h2 class="" style="height: 60px; font-size: 12px;">{{ item['title'] }}</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-5 fw-bold m-0">{{ item['price'] }} грн</p>
+                            <form action="{{ url_for('add_to_cart') }}" method="POST">
+                                <input type="hidden" name="itemId" value="{{ item.id }}">
+                                <button class="btn" style="border-radius: 100px; width: 60px; height: 60px; " type="submit">
+                                    <img src="/static/cart-plus-icon.png" alt="" class="img-fluid">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Contact</title>
+{% endblock %}
+
+                    {% block nav %}
+                        <div class=" nav-content nav-underline d-none d-xl-flex d-xxl-flex  d-md-flex ">
+                            <li class="nav-item nav-underline d-none d-xl-flex d-xxl-flex  d-md-flex" style="list-style: none;">
+                                <a class="nav-link" href="/">Головна</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/about">Про компанію</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link " href="/delivery">Доставка та оплата</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/consultation"> Консультація</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link fw-bold" href="/contact">Контакти</a>
+                            </li>
+                        </div>
+                    {% endblock %}
+
+{% block body %}
+<div class="p-2" style="margin-top: 50px;">
+    <div class="container bg-white p-3  justify-content-center ">
+        <h1>Контакти</h1>
+        <hr>
+        <div class="container d-sm-flex d-md-flex d-lg-flex d-xl-flex	d-xxl-flex">
+            <h5 class="w-100 p-1 m-0">Дрон-Сітi</h5>
+            <p class="w-100 p-1 m-0">+360 99 345 23 64</p>
+            <p class="w-100 p-1 m-0">dronsiti@gmail.com</p>
+        </div>
+        <hr>
+        <h6>Форма зворотного зв'язку</h6>
+        <div class="container d-flex mt-3">
+            <form class="w-100" method="post" enctype="multipart/form-data">
+                <div class="d-flex">
+                    <input style="border-radius: 15px; border: 1px solid rgb(212, 212, 212);" class="form-check w-100 p-3 rounded-lg" type="text" name="name" placeholder="Ім'я"  required>
+                    <div style="width: 40px;"></div>
+                    <input style="border-radius: 15px; border: 1px solid rgb(212, 212, 212);" class="form-check w-100 p-3" type="email" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$" placeholder="Адреса електронної пошти"  required><br>
+                </div><br>
+                <input style="border-radius: 15px; border: 1px solid rgb(212, 212, 212);" class="form-check w-100 p-3" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Номер телефону"><br>
+                <textarea maxlength="1000" style="border-radius: 15px;border: 1px solid rgb(212, 212, 212);; height: 100px;" class="form-check w-100 p-3" type="text" name="coment" placeholder="Коментар"  required></textarea><br>
+                <hr>
+                <div class="d-flex row">
+                    <p class="col-xl-9 col-md-9">Ми обов'язково зв'яжемося з Вами</p>
+                    <input  class="col-xl-3 col-md-3 btn btn-dark p-3 ps-5 pe-5 float-end" type="submit" value="Відправити">
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>
+{% endblock %}

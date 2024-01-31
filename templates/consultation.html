@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Consultation</title>
+{% endblock %}
+
+                    {% block nav %}
+                        <div class=" nav-content nav-underline d-none d-xl-flex d-xxl-flex  d-md-flex ">
+                            <li class="nav-item nav-underline d-none d-xl-flex d-xxl-flex  d-md-flex" style="list-style: none;">
+                                <a class="nav-link" href="/">Головна</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/about">Про компанію</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link " href="/delivery">Доставка та оплата</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link fw-bold" href="/consultation"> Консультація</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/contact">Контакти</a>
+                            </li>
+                        </div>
+                    {% endblock %}
+
+{% block body %}
+<div class="p-2" style="margin-top: 50px;">
+    <div class="">
+    <div class="container-fluid ms-auto me-auto bg-white row p-3" style="border: 1px solid rgb(212, 212, 212); border-radius: 15px;" >
+        <div class="col" data-wow-delay="0.3s">
+            <h1 >Консультація</h1>
+            <hr>
+            <h6>Не знаєш який дрон вибрати? Замовляйте безплатну консультацію у нас!</h6>
+            <p>Наші консультанти допоможуть вам вибрати дрон, який відповідає вашим потребам та бюджету.</p>
+            <hr>
+            <h6>Консультація триває 30 хвилин і включає в себе:</h6>
+            <ul>
+                <li>
+                    <p>Збір інформації про ваші потреби та цілі використання дрона</p>
+                </li>
+                <li>
+                    <p>Ознайомлення з різними видами дронів, доступними на ринку</p>
+                </li>
+                <li>
+                    <p>Порівняння дронів за різними характеристиками</p>
+                </li>
+                <li>
+                    <p>Рекомендації щодо найкращого дрона для ваших потреб</p>
+                </li>
+            </ul>
+            <hr>
+            <h6>Замовляйте консультацію вже сьогодні!</h6>
+        </div>
+        <div class="col p-3 m-2 " style="background-image: url('/static/Drones.gif'); background-position: center; background-repeat: no-repeat; background-size: cover; border: 1px solid rgb(212, 212, 212); border-radius: 15px;" data-wow-delay="0.3s">
+            <div class="d-flex justify-content-between align-items-end">
+                <div style="height: 400px;"></div>
+                <button class="btn btn-light" style=" width: 200px; height: 40px;;">Отримати</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

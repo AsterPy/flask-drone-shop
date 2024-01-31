@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="/static/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+                    {% block nav %}
+                        <div class=" nav-content nav-underline d-none d-xl-flex d-xxl-flex ">
+                            <li class="nav-item nav-underline d-none d-xl-flex d-xxl-flex" style="list-style: none;">
+                                <a class="nav-link fw-bold" href="/">Головна</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/about">Про компанію</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link " href="/delivery">Доставка та оплата</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/consultation"> Консультація</a>
+                            </li>
+                            <li class="nav-item ms-4" style="list-style: none;">
+                                <a class="nav-link" href="/contact">Контакти</a>
+                            </li>
+                        </div>
+                    {% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center" style=" background-color: rgb(245, 245, 245); min-height: 100vh;">
+    <div class="p-3" style="width: 100%; margin-top: 100px;" >
+        <div class="p-3 align-items-center  justify-content-center">
+            <div class="row mb-5">
+                <div class="col">
+                    <p class=" rounded " style="font-size: 4cap; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-weight: 600;  line-height: 1.1;">Дрони стають все більш потрібні, і це не дивно. </p>
+                    <p class="">Вони пропонують безліч можливостей для розваги, фотографії, відео зйомки та навіть бізнесу. Якщо ви думаєте про покупку дрона, але не знаєте, з чого почати, наш магазин — ідеальне місце для вас. Ми пропонуємо широкий вибір дронів на будь-який бюджет і завдання.</p>
+                </div>
+                <div class="col">
+                    <img src="/static/home-d1.png" alt="" class=" img-fluid" style="min-width: 300px;">
+                </div>
+            </div>
+            <div class="">
+                <div class="row">
+                    <a href="/dronList" class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 300px;">
+                        <img src="/static/home-img.png" alt="" class="img-fluid" style="max-height: 250px;">
+                        <h6>Дрони</h6>
+                    </a>
+                    <div class="col">
+                        <div class="row">
+                            <a href="/pultList" class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/home-p1.png" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Пульти</h6>
+                            </a>
+                            <a class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/home-i1.png" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Окуляри</h6>
+                            </a>
+                            <a class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/full-stack.png" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Готові набори</h6>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <a class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/akkumuljator.jpg" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Аккумулятори</h6>
+                            </a>
+                            <a class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/quadro-combo.jpeg" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Запчастини</h6>
+                            </a>
+                            <a class="col btn m-2 d-flex flex-column align-items-center justify-content-center bg-white p-3" style="border-radius: 15px; min-width: 150px;">
+                                <img src="/static/case.webp" alt="" class="img-fluid" style="max-height: 90px;">
+                                <h6>Кейси</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div style="height: 1px; width: 100%; background-color: white;"></div>-->
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

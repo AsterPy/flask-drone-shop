@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Drone</title>
+{% endblock %}
+{% block body %}
+<div class="p-3" style="margin-top: 50px;">
+    <a href="/back" class="btn mb-2 text-center">До каталогу</a>
+<div class="">
+    <div  class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 justify-content-center">
+        <div class="col row-cols-1 d-flex align-items-start">
+            <img class="img-fluid bg-white" style="border-radius: 5px; padding-top: 5cap; padding-bottom: 5cap; position: sticky; top: 80px;" src="data:image/png;base64,{{ item['image'] }}" alt="{{ item['title'] }}">
+        </div>
+        <div class="col">
+            <h1 class="fs-3 fw-bold" style="max-width: 900px;">{{ item['title'] }}</h1>
+            <p class="fs-6 mb-2">в наявності: <span style="padding: 5px; border-radius: 2px; background-color: rgb(250, 250, 250);"> {{ item['isActive'] }} шт.</span></p>
+            <div class="bg-white mb-2 p-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="fs-3 fw-bold m-0">{{ item['price'] }} грн</p>
+                    <div class="d-flex">
+                        <a href="#" class="btn" style="background-color: rgb(227, 227, 227); color: rgb(56, 56, 56);">Швидке замовлення</a>
+                        <form class="ms-2" action="{{ url_for('add_to_cart') }}" method="POST">
+                            <input type="hidden" name="itemId" value="{{ item.id }}">
+                            <button class="btn btn-dark" type="submit">+</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h6 class="mb-2 fw-bold">Характеристика:</h6>
+            <div class="p-3 bg-white">
+                <p style="white-space: pre-wrap;">{{ item['about'] }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}
